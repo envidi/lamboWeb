@@ -141,18 +141,7 @@ function showUlLevel3() {
         })
     })
 }
-function responsiveImg() {
-    window.addEventListener("resize", function (e) {
 
-        const scale = (num, in_min, in_max, out_min, out_max) => {
-            return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-        }
-        const width = e.target.outerWidth;
-        const lambo = document.querySelector(".lambo");
-        console.log(lambo)
-        lambo.style.height = `${scale(width, 800, 1290, 59, 41)}vw`;
-    })
-}
 function showModel() {
     const aventadorArray =
         [
@@ -230,9 +219,9 @@ function showModel() {
             appendMenuLink.className = "menu-link-data";
             var htmls = aventadorArray.map(function (array, indexArray) {
                 return `<div class="row">
-                <!-- -----img----- -->
+                
                 <div class="col">
-                    <div class="d-f jf-c al-c lambo">
+                    <div class="lambo d-f jf-c al-c">
                         <img src=${aventadorArray[indexaven].image} alt="" srcset="">
                     </div>
                 </div>
@@ -307,6 +296,7 @@ function showModel() {
             const menuLevel2 = document.querySelector(".header-ul-level2");
             menuLevel2.appendChild(appendMenuLink);
             appendMenuLink.classList.add("active");
+
             responsiveImg();
         })
         aven.addEventListener("mouseout", menuRemove)
@@ -540,57 +530,242 @@ function showSliderMove() {
     }
 
 }
+
+
+
+var slide =  0;
 const arraySkewSlide =
-["./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg",
-    "./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg",
-    "./Lamborghini-Img/model-explore/family_chooser_tecnica.jpg"];
+    ["./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg",
+        "./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg",
+        "./Lamborghini-Img/model-explore/family_chooser_tecnica.jpg"];
 function renderSkew() {
+    const containExploreModel = document.querySelector(".contain-explore-model");
+    const exploreModel = document.createElement("div");
+    exploreModel.classList.add("explore-model");
+    exploreModel.innerHTML = `<div class="slide-skew active-skew">
+                        <div class="skew">
+                            <div class="skew_background">
+                                <img src="./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-skew">
+                        <div class="skew">
+                            <div class="skew_background">
+                                <img src="./Lamborghini-Img/model-explore/family_chooser_tecnica.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slide-skew">
+                        <div class="skew">
+                            <div class="skew_background">
+                                <img src="./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+    `
+    containExploreModel.appendChild(exploreModel)
+}
+const arrayModelSkew =
+    ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
+    './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
+    './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+function slideSkewNext() {
+    // const arrayModelSkew =
+    //     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
+    //         './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
+    //         './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+
+
+
+    const slideSkew = document.querySelectorAll(".slide-skew");
+    // const exploreModel = document.querySelector(".explore-model");
+
+    slide++;
+    if (slide > slideSkew.length - 1) {
+        slide = 0
+    }
+    // const skewDiv = document.createElement("div");
+    // skewDiv.classList.add("slide-skew");
+    // skewDiv.innerHTML = `<div class="skew">
+    //     <div class="skew_background">
+    //         <img src="${arrayModelSkew[slide]}" alt="">
+    //     </div>
+    // </div>`;
+    // console.log(exploreModel)
+
+    // exploreModel.appendChild(skewDiv);
+    // slideSkew[0].remove();
+    // const slideAct = document.querySelector(".slide-skew.active-skew")
+    // // slideAct.classList.remove("active-skew");
+    // // setTimeout(function(){
+    // slideSkew[1].classList.add("active-skew");
+    // // },500);
+
+    // const skewDiv2 = document.createElement("div");
+    // skewDiv2.classList.add("slide-skew");
+    // skewDiv2.innerHTML = `<div class="skew">
+    //     <div class="skew_background">
+    //         <img src="${arrayModelSkew[slide]}" alt="">
+    //     </div>
+    // </div>`;
+    // console.log(exploreModel)
+    // exploreModel.appendChild(skewDiv2);
+    // setTimeout(function () {
+    //     skewDiv2.classList.add("active-skew2");
+    // }, 100)
+    // setTimeout(function () {
+    //     const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
+    //     skewDivAct2.remove();
+    // }, 700)
+    // console.log(slideSkew);
+    return skewNextBack(slide)
+
+}
+function showBackNextSkewSlide(slide){
+    const slideSkew = document.querySelectorAll(".slide-skew");
     const exploreModel = document.querySelector(".explore-model");
-
-    var htmls = arraySkewSlide.map((arr,index) =>
-        `<div class="slide-skew ${index == 2 ? "active-skew" :"" }"  data-index = ${index}>
-        <div class="skew">
+    const skewDiv = document.createElement("div");
+    skewDiv.classList.add("slide-skew");
+    skewDiv.innerHTML = `<div class="skew">
             <div class="skew_background">
-                <img src="${arr}" alt="">
+                <img src="${arrayModelSkew[slide]}" alt="">
             </div>
-        </div>
-    </div>`
-    )
-    exploreModel.innerHTML = htmls.join("");
+        </div>`;
+   
+
+    exploreModel.appendChild(skewDiv);
+    slideSkew[0].remove();
+    const slideAct = document.querySelector(".slide-skew.active-skew")
+    // slideAct.classList.remove("active-skew");
+    // setTimeout(function(){
+    slideSkew[1].classList.add("active-skew");
+    // },500);
+
+    const skewDiv2 = document.createElement("div");
+    skewDiv2.classList.add("slide-skew");
+    skewDiv2.innerHTML = `<div class="skew">
+            <div class="skew_background">
+                <img src="${arrayModelSkew[slide]}" alt="">
+            </div>
+        </div>`;
+    
+    exploreModel.appendChild(skewDiv2);
+    setTimeout(function () {
+        skewDiv2.classList.add("active-skew2");
+    }, 100)
+    setTimeout(function () {
+        const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
+        skewDivAct2.remove();
+    }, 700)
+    console.log(slide);
 }
-function slideSkew() {
-    const modelSkew = document.querySelectorAll(".slide-skew");
-    const controlLeft = document.querySelector(".control-slide-left");
-    const controlRight = document.querySelector(".control-slide-right");
-  
-    // modelSkew[2].remove();
+
+function slideSkewBack() {
 
 
-    var slideSkew = 2;
-    controlRight.addEventListener("click", function () {
-        // const modalSlideActive = document.querySelector(".slide-skew.active-skew");
 
-        slideSkew++;
-        if (slideSkew > modelSkew.length - 1) {
-            slideSkew = 0;
+    const slideSkew = document.querySelectorAll(".slide-skew");
+    // const exploreModel = document.querySelector(".explore-model");
+
+    slide--;
+    if (slide < 0) {
+        slide = slideSkew.length - 1
+    }
+    console.log('0',slideSkew[0])
+    console.log('1',slideSkew[1])
+    console.log('2',slideSkew[2])
+    // const skewDiv = document.createElement("div");
+    // skewDiv.classList.add("slide-skew");
+    // skewDiv.innerHTML = `<div class="skew">
+    //         <div class="skew_background">
+    //             <img src="${arrayModelSkew[slide]}" alt="">
+    //         </div>
+    //     </div>`;
+    // console.log(exploreModel)
+
+    // exploreModel.appendChild(skewDiv);
+    // slideSkew[0].remove();
+    // const slideAct = document.querySelector(".slide-skew.active-skew")
+    // // slideAct.classList.remove("active-skew");
+    // // setTimeout(function(){
+    // slideSkew[1].classList.add("active-skew");
+    // // },500);
+
+    // const skewDiv2 = document.createElement("div");
+    // skewDiv2.classList.add("slide-skew");
+    // skewDiv2.innerHTML = `<div class="skew">
+    //         <div class="skew_background">
+    //             <img src="${arrayModelSkew[slide]}" alt="">
+    //         </div>
+    //     </div>`;
+    // console.log(exploreModel)
+    // exploreModel.appendChild(skewDiv2);
+    // setTimeout(function () {
+    //     skewDiv2.classList.add("active-skew2");
+    // }, 100)
+    // setTimeout(function () {
+    //     const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
+    //     skewDivAct2.remove();
+    // }, 700)
+    // console.log(slide);
+    return skewNextBack(slide)
+
+}
+function skewNextBack(slide){
+    return slide
+}
+
+
+const controlLeft = document.querySelector(".control-slide-left");
+const controlRight = document.querySelector(".control-slide-right");
+controlRight.addEventListener("click", function () {
+    slideSkewNext();
+    function slideReturn(slide){
+        if(slide === 2){
+            slide = 1;
         }
-        // modalSlideActive.classList.remove(".active-skew");
-        // console.log(modalSlideActive)
-        // modelSkew[slideSkew].classList.add("active-skew");
-        // console.log(slideSkew)
-       setTimeout(function(){
-        var slidePop = arraySkewSlide.pop();
-        console.log(slidePop);
-        arraySkewSlide.unshift(slidePop);
-        console.log(arraySkewSlide)
-        renderSkew()
-       },000)
-       
+        else if ( slide === 1){
+            slide = 2 
+        }
+        else if( slide === 0 ){
+            slide = 0
+        }
+        return slide
+    }
+    console.log(slide);
+    showBackNextSkewSlide(slide)
+    
+    
+})
+controlLeft.addEventListener("click", function () {
+    slideSkewBack(); 
+    function slideReturn(slide){
+        if(slide === 2){
+            slide = 1;
+        }
+        else if ( slide === 1){
+            slide = 2 
+        }
+        else if( slide === 0 ){
+            slide = 0
+        }
+        return slide
+    }
+    showBackNextSkewSlide(slide)
+    console.log(slide);
+})
 
-       
-    })
 
-}
+
+
+
+
+
 
 
 function beginLambor() {
@@ -604,8 +779,10 @@ function beginLambor() {
     addEffect();
     showSliderMove();
     setInterval(showSliderMove, 15000);
-    renderSkew()
-    slideSkew();
+    renderSkew();
+
 
 }
 beginLambor()
+
+
