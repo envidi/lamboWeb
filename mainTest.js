@@ -406,7 +406,7 @@ function showSliderMove() {
     const bigTextActive = document.querySelector(".big-text.trans-x-0");
     const bannerContentTitleActive = document.querySelector(".banner__title.active-banner");
     const hexagonBannerActive = document.querySelector(".hexagon__banner.sca-hexa-100");
-    // const bannerTitleArray = ["AVENTADOR LP 780-4 ULTIMAE", "AVENTADOR LP 780-4 ULTIMAE2", "AVENTADOR LP 780-4 ULTIMAE3", "AVENTADOR LP 780-4 ULTIMAE4"];
+
 
     function increaseBanner() {
         increase++;
@@ -430,14 +430,15 @@ function showSliderMove() {
     hexagonBanner[increase].classList.add("sca-hexa-100");
     if (bannerContentTitle[1].classList.contains("active-banner")) {
         var firstTextTrans = -1;
-        const rotateHexagon = document.querySelectorAll(".bi-hexagon")
+        const rotateHexagon = document.querySelectorAll(".bi-hexagon");
+
         function transText() {
             firstTextTrans++;
             const textTitleTrans = document.querySelectorAll(".transText2");
             if (firstTextTrans > textTitleTrans.length - 1) {
                 clearInterval(interal);
                 firstTextTrans = 0;
-                rotateHexagon[1].classList.remove("rotate-hexagon")
+                // rotateHexagon[1].classList.remove("rotate-hexagon")
             }
             textTitleTrans[firstTextTrans].classList.add("transTextActive")
         }
@@ -447,7 +448,7 @@ function showSliderMove() {
         const textTitleTrans = document.querySelectorAll(".transText2");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
 
-        rotateHexagon[1].classList.add("rotate-hexagon")
+        // rotateHexagon[1].classList.add("rotate-hexagon")
         textTitleTrans.forEach((text) => {
             text.classList.remove("transTextActive");
         })
@@ -464,7 +465,7 @@ function showSliderMove() {
             if (firstTextTrans1 > textTitleTrans1.length - 1) {
                 clearInterval(interal1);
                 firstTextTrans1 = 0;
-                rotateHexagon[0].classList.remove("rotate-hexagon")
+                // rotateHexagon[0].classList.remove("rotate-hexagon")
             }
             textTitleTrans1[firstTextTrans1].classList.add("transTextActive")
         }
@@ -473,7 +474,7 @@ function showSliderMove() {
     else {
         const textTitleTrans1 = document.querySelectorAll(".transText1");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[0].classList.add("rotate-hexagon")
+        // rotateHexagon[0].classList.add("rotate-hexagon")
         textTitleTrans1.forEach((text1) => {
             text1.classList.remove("transTextActive");
         })
@@ -489,7 +490,7 @@ function showSliderMove() {
             if (firstTextTrans3 > textTitleTrans3.length - 1) {
                 clearInterval(interal3);
                 firstTextTrans3 = 0;
-                rotateHexagon[2].classList.remove("rotate-hexagon")
+                // rotateHexagon[2].classList.remove("rotate-hexagon")
             }
             textTitleTrans3[firstTextTrans3].classList.add("transTextActive")
         }
@@ -498,7 +499,7 @@ function showSliderMove() {
     else {
         const textTitleTrans3 = document.querySelectorAll(".transText3");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[2].classList.add("rotate-hexagon")
+        // rotateHexagon[2].classList.add("rotate-hexagon")
         textTitleTrans3.forEach((text3) => {
             text3.classList.remove("transTextActive");
         })
@@ -514,7 +515,7 @@ function showSliderMove() {
             if (firstTextTrans4 > textTitleTrans4.length - 1) {
                 clearInterval(interal4);
                 firstTextTrans4 = 0;
-                rotateHexagon[3].classList.remove("rotate-hexagon")
+                // rotateHexagon[3].classList.remove("rotate-hexagon")
             }
             textTitleTrans4[firstTextTrans4].classList.add("transTextActive")
         }
@@ -523,7 +524,7 @@ function showSliderMove() {
     else {
         const textTitleTrans4 = document.querySelectorAll(".transText4");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[3].classList.add("rotate-hexagon")
+        // rotateHexagon[3].classList.add("rotate-hexagon")
         textTitleTrans4.forEach((text4) => {
             text4.classList.remove("transTextActive");
         })
@@ -533,7 +534,7 @@ function showSliderMove() {
 
 
 
-var slide =  0;
+var slide = 0;
 const arraySkewSlide =
     ["./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg",
         "./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg",
@@ -572,22 +573,57 @@ function renderSkew() {
 }
 const arrayModelSkew =
     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
-    './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
-    './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+        './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
+        './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
 function slideSkewNext() {
+    // const arrayModelSkew =
+    //     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
+    //         './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
+    //         './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+
+
 
     const slideSkew = document.querySelectorAll(".slide-skew");
-    
+    // const exploreModel = document.querySelector(".explore-model");
 
     slide++;
     if (slide > slideSkew.length - 1) {
         slide = 0
     }
-   
+
     return skewNextBack(slide)
 
 }
-function showBackNextSkewSlide(slide){
+
+function slideSkewBack() {
+
+
+
+    const slideSkew = document.querySelectorAll(".slide-skew");
+    // const exploreModel = document.querySelector(".explore-model");
+
+    slide--;
+    if (slide < 0) {
+        slide = slideSkew.length - 1
+    }
+    console.log('0', slideSkew[0])
+    console.log('1', slideSkew[1])
+    console.log('2', slideSkew[2])
+
+    return skewNextBack(slide)
+
+}
+function skewNextBack(slide) {
+    return slide
+}
+
+
+const controlLeft = document.querySelector(".control-slide-left");
+const controlRight = document.querySelector(".control-slide-right");
+controlRight.addEventListener("click", function () {
+    slideSkewNext();
+
+    console.log(slide);
     const slideSkew = document.querySelectorAll(".slide-skew");
     const exploreModel = document.querySelector(".explore-model");
     const skewDiv = document.createElement("div");
@@ -597,7 +633,7 @@ function showBackNextSkewSlide(slide){
                 <img src="${arrayModelSkew[slide]}" alt="">
             </div>
         </div>`;
-   
+
 
     exploreModel.appendChild(skewDiv);
     slideSkew[0].remove();
@@ -614,7 +650,7 @@ function showBackNextSkewSlide(slide){
                 <img src="${arrayModelSkew[slide]}" alt="">
             </div>
         </div>`;
-    
+
     exploreModel.appendChild(skewDiv2);
     setTimeout(function () {
         skewDiv2.classList.add("active-skew2");
@@ -623,67 +659,105 @@ function showBackNextSkewSlide(slide){
         const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
         skewDivAct2.remove();
     }, 700)
-    console.log(slide);
-}
+    const skewTextEffectBlock = document.querySelectorAll(".skewTextEffect");
+    skewTextEffectBlock.forEach((textOpaAll, index) => {
+        const activeSkewTextEff = document.querySelector(".skewTextEffect.activeSkewTextEffect");
+        if (slide > skewTextEffectBlock.length - 1) {
+            slide = 0;
+        }
+        activeSkewTextEff.classList.remove("activeSkewTextEffect");
+        skewTextEffectBlock[slide].classList.add("activeSkewTextEffect");
 
-function slideSkewBack() {
+    })
+    setTimeout(function() {
+        const bigText2s = document.querySelectorAll(".big-text2");
+        const activeBigText2 = document.querySelector(".big-text2.trans-x-0");
+        activeBigText2.classList.remove("trans-x-0");
+        bigText2s[slide].classList.add("trans-x-0");
+    }, 200);
 
 
 
-    const slideSkew = document.querySelectorAll(".slide-skew");
-    // const exploreModel = document.querySelector(".explore-model");
+    if (skewTextEffectBlock[0].classList.contains("activeSkewTextEffect")) {
 
-    slide--;
-    if (slide < 0) {
-        slide = slideSkew.length - 1
+        var increaseTextOpa1 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa1++;
+                const skewTextOpa1 = document.querySelectorAll(".skewTextOpa1");
+                if (increaseTextOpa1 > skewTextOpa1.length - 1) {
+                    clearInterval(textOpaSkew1);
+                    increaseTextOpa1 = 0
+
+                }
+
+                skewTextOpa1[increaseTextOpa1].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew1 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa1.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
     }
-  
-    return skewNextBack(slide)
+    // --------------
+    if (skewTextEffectBlock[1].classList.contains("activeSkewTextEffect")) {
 
-}
-function skewNextBack(slide){
-    return slide
-}
+        var increaseTextOpa2 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa2++;
+                const skewTextOpa2 = document.querySelectorAll(".skewTextOpa2");
+                if (increaseTextOpa2 > skewTextOpa2.length - 1) {
+                    clearInterval(textOpaSkew2);
+                    increaseTextOpa2 = 0
 
+                }
 
-const controlLeft = document.querySelector(".control-slide-left");
-const controlRight = document.querySelector(".control-slide-right");
-controlRight.addEventListener("click", function () {
-    slideSkewNext();
-    function slideReturn(slide){
-        if(slide === 2){
-            slide = 1;
-        }
-        else if ( slide === 1){
-            slide = 2 
-        }
-        else if( slide === 0 ){
-            slide = 0
-        }
-        return slide
+                skewTextOpa2[increaseTextOpa2].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew2 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa2.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
     }
-    console.log(slide);
-    showBackNextSkewSlide(slide)
-    
-    
+    // --------------
+    if (skewTextEffectBlock[2].classList.contains("activeSkewTextEffect")) {
+
+        var increaseTextOpa3 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa3++;
+                const skewTextOpa3 = document.querySelectorAll(".skewTextOpa3");
+                if (increaseTextOpa3 > skewTextOpa3.length - 1) {
+                    clearInterval(textOpaSkew3);
+                    increaseTextOpa3 = 0
+
+                }
+
+                skewTextOpa3[increaseTextOpa3].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew3 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa3.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
+    }
 })
-controlLeft.addEventListener("click", function () {
-    slideSkewBack(); 
-    function slideReturn(slide){
-        if(slide === 2){
-            slide = 1;
-        }
-        else if ( slide === 1){
-            slide = 2 
-        }
-        else if( slide === 0 ){
-            slide = 0
-        }
-        return slide
-    }
-    showBackNextSkewSlide(slide)
-    
-})
+
+
 
 
 
