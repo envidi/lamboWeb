@@ -1,0 +1,9 @@
+.control-block{
+    width: 35px;
+    height: 2px;
+    background-color: rgb(221, 221, 221);
+    &:hover{
+        height: 3px;
+        transition: all 0.5s ease-in;
+    }
+}

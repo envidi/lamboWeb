@@ -669,7 +669,7 @@ controlRight.addEventListener("click", function () {
         skewTextEffectBlock[slide].classList.add("activeSkewTextEffect");
 
     })
-    setTimeout(function() {
+    setTimeout(function () {
         const bigText2s = document.querySelectorAll(".big-text2");
         const activeBigText2 = document.querySelector(".big-text2.trans-x-0");
         activeBigText2.classList.remove("trans-x-0");
@@ -757,8 +757,109 @@ controlRight.addEventListener("click", function () {
     }
 })
 
+function appendInfoSkew() {
+    const infoSkew = [
+        ["HURACÁN STERRATO", "HURACÁN TECNICA", "HURACÁN STO", "HURACÁN EVO", "HURACÁN EVO SPYDER", "HURACÁN EVO RWD", "HURACÁN EVO RWD SPYDER"],
+        ["AVENTADOR SVJ", "AVENTADOR SVJ ROADSTER", "AVENTADOR LP 780-4 ULTIMAE ROADSTER", "AVENTADOR LP 780-4 ULTIMAE"],
+        ["URUS S", "URUS PERFORMANTE", "URUS", "URUS PEARL CAPSULE", "URUS GRAPHITE CAPSULE"],
+    ];
+    // for( var i = 0 ; i < infoSkew.length -1 ; i++){
+    //    for(var j = 0 ; j < infoSkew.length)
+    // }
+    skewNextBack(slide);
+    console.log(slide);
+    function renderLI() {
+        return
+    }
+    // console.log(infoSkew[2]);
+    const btnAddInfoSkew = document.querySelector(".hexagon2_banner2_plus");
+    btnAddInfoSkew.addEventListener("click", (event) => {
+        const controlSkew = document.querySelector(".control");
+        const skewTextEffect = document.querySelectorAll(".skewTextEffect");
+        const btn_add_moreSkew = document.querySelector(".btn_add_moreSkew");
+        setTimeout(function () {
+            skewTextEffect.forEach(function (skew) {
+                skew.classList.add("display-n");
+            })
+            btn_add_moreSkew.classList.add("display-n");
+            controlSkew.classList.add("display-n");
+        }, 300  );
+        const containExplore = document.querySelector(".contain-explore-model");
+        const addDivInfo = document.createElement("div");
+        addDivInfo.classList.add("contain_info-model-skew");
+        addDivInfo.innerHTML = `<div class="info-model-skew" style="transform : skew(20deg)">
+        <div class="back_btn_skew">
+            <button class="control-slide-right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="70"
+                    width="70">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <path
+                        d="M220,175.3V80.7a8.1,8.1,0,0,0-4.1-7l-84-47.5a7.8,7.8,0,0,0-7.8,0l-84,47.5a8.1,8.1,0,0,0-4.1,7v94.6a8.1,8.1,0,0,0,4.1,7l84,47.5a7.8,7.8,0,0,0,7.8,0l84-47.5A8.1,8.1,0,0,0,220,175.3Z"
+                        fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="6" id="mainIconPathAttribute"></path>
+                </svg>
+                <div class="hexagon2_banner2_info">
+                    <i style="font-size: 20px;" class="bi bi-chevron-left btn-left-appendSlide1"></i>
+                </div>
+            </button>
+        </div>
+        <div class="contain_ul_skew">
+            
+        </div>
+       </div>`
+        containExplore.appendChild(addDivInfo);
+        const divSKewInfo = document.querySelector(".contain_ul_skew");
+        const ulSkewInfo = document.createElement("ul");
+        ulSkewInfo.classList.add("ul_info-model-skew");
+        var html = '';
+        for (var i = 0; i < infoSkew[slide].length; i++) {
 
+            html += `<li>
+            <div class="opa_text_info">
+                EXPLORE
+            </div>
+            <div class="info_model_skew">
+                ${infoSkew[slide][i]}
+            </div>      
+          </li>
+          `;
 
+        }
+        ulSkewInfo.innerHTML = html;
+        divSKewInfo.appendChild(ulSkewInfo);
+        setTimeout(function () {
+            const activeContainInfoSkew = document.querySelector(".contain_info-model-skew");
+            activeContainInfoSkew.classList.add("active_contain_info-model-skew");
+            const exploreModel = document.querySelector(".explore-model");
+            exploreModel.classList.add("active_explore-model");
+        }, 250);
+        removeSkewInfo();
+    })
+}
+
+function removeSkewInfo() {
+    const backBtnSkew = document.querySelector(".back_btn_skew");
+
+    backBtnSkew.addEventListener("click", function () {
+        const controlSkew = document.querySelector(".control");
+        const skewTextEffect = document.querySelectorAll(".skewTextEffect");
+        const btn_add_moreSkew = document.querySelector(".btn_add_moreSkew");
+       
+        skewTextEffect.forEach(function (skew) {
+            skew.classList.remove("display-n");
+        })
+        btn_add_moreSkew.classList.remove("display-n");
+        controlSkew.classList.remove("display-n");
+        const activeContainInfoSkew = document.querySelector(".contain_info-model-skew.active_contain_info-model-skew");
+        activeContainInfoSkew.classList.remove("active_contain_info-model-skew");
+        const exploreModel = document.querySelector(".explore-model.active_explore-model");
+        exploreModel.classList.remove("active_explore-model");
+        const containInfoSkew = document.querySelector(".contain_info-model-skew");
+        setTimeout(function () {
+            containInfoSkew.remove();
+        }, 285)
+    })
+}
 
 
 
@@ -779,7 +880,7 @@ function beginLambor() {
     showSliderMove();
     setInterval(showSliderMove, 15000);
     renderSkew();
-
+    appendInfoSkew();
 
 }
 beginLambor()
