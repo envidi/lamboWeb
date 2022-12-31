@@ -398,6 +398,7 @@ function addEffect() {
 // ----------------main--------------------------------------
 var increase = 0;
 function showSliderMove() {
+    increase++;
     const bannerImg = document.querySelectorAll(".banner__img");
     const bannerContentTitle = document.querySelectorAll(".banner__title");
     const bigText = document.querySelectorAll(".big-text");
@@ -406,19 +407,41 @@ function showSliderMove() {
     const bigTextActive = document.querySelector(".big-text.trans-x-0");
     const bannerContentTitleActive = document.querySelector(".banner__title.active-banner");
     const hexagonBannerActive = document.querySelector(".hexagon__banner.sca-hexa-100");
-    // const bannerTitleArray = ["AVENTADOR LP 780-4 ULTIMAE", "AVENTADOR LP 780-4 ULTIMAE2", "AVENTADOR LP 780-4 ULTIMAE3", "AVENTADOR LP 780-4 ULTIMAE4"];
+    const controlBlocks = document.querySelectorAll(".control-block");
 
-    function increaseBanner() {
-        increase++;
+
+
+    controlBlocks.forEach((controlBlock, index) => {
+        controlBlock.addEventListener("click", function () {
+            return check(index)
+        })
+    })
+
+    function check(index) {
+
+        if (index) {
+
+            increase = index;
+        }
         if (increase > bannerImg.length - 1) {
             increase = 0;
         }
-
-
+        console.log('increase,', increase)
+        console.log('index', index)
+        return increase
     }
 
 
-    setInterval(increaseBanner(), 1000);
+
+
+
+  
+
+
+
+
+
+    // setInterval(increaseBanner(), 1000);
     bannerImgActive.classList.remove("active");
     bannerImg[increase].classList.add("active");
     bigTextActive.classList.remove("trans-x-0")
@@ -430,14 +453,15 @@ function showSliderMove() {
     hexagonBanner[increase].classList.add("sca-hexa-100");
     if (bannerContentTitle[1].classList.contains("active-banner")) {
         var firstTextTrans = -1;
-        const rotateHexagon = document.querySelectorAll(".bi-hexagon")
+        const rotateHexagon = document.querySelectorAll(".bi-hexagon");
+
         function transText() {
             firstTextTrans++;
             const textTitleTrans = document.querySelectorAll(".transText2");
             if (firstTextTrans > textTitleTrans.length - 1) {
                 clearInterval(interal);
                 firstTextTrans = 0;
-                rotateHexagon[1].classList.remove("rotate-hexagon")
+                // rotateHexagon[1].classList.remove("rotate-hexagon")
             }
             textTitleTrans[firstTextTrans].classList.add("transTextActive")
         }
@@ -447,7 +471,7 @@ function showSliderMove() {
         const textTitleTrans = document.querySelectorAll(".transText2");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
 
-        rotateHexagon[1].classList.add("rotate-hexagon")
+        // rotateHexagon[1].classList.add("rotate-hexagon")
         textTitleTrans.forEach((text) => {
             text.classList.remove("transTextActive");
         })
@@ -464,7 +488,7 @@ function showSliderMove() {
             if (firstTextTrans1 > textTitleTrans1.length - 1) {
                 clearInterval(interal1);
                 firstTextTrans1 = 0;
-                rotateHexagon[0].classList.remove("rotate-hexagon")
+                // rotateHexagon[0].classList.remove("rotate-hexagon")
             }
             textTitleTrans1[firstTextTrans1].classList.add("transTextActive")
         }
@@ -473,7 +497,7 @@ function showSliderMove() {
     else {
         const textTitleTrans1 = document.querySelectorAll(".transText1");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[0].classList.add("rotate-hexagon")
+        // rotateHexagon[0].classList.add("rotate-hexagon")
         textTitleTrans1.forEach((text1) => {
             text1.classList.remove("transTextActive");
         })
@@ -489,7 +513,7 @@ function showSliderMove() {
             if (firstTextTrans3 > textTitleTrans3.length - 1) {
                 clearInterval(interal3);
                 firstTextTrans3 = 0;
-                rotateHexagon[2].classList.remove("rotate-hexagon")
+                // rotateHexagon[2].classList.remove("rotate-hexagon")
             }
             textTitleTrans3[firstTextTrans3].classList.add("transTextActive")
         }
@@ -498,7 +522,7 @@ function showSliderMove() {
     else {
         const textTitleTrans3 = document.querySelectorAll(".transText3");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[2].classList.add("rotate-hexagon")
+        // rotateHexagon[2].classList.add("rotate-hexagon")
         textTitleTrans3.forEach((text3) => {
             text3.classList.remove("transTextActive");
         })
@@ -514,7 +538,7 @@ function showSliderMove() {
             if (firstTextTrans4 > textTitleTrans4.length - 1) {
                 clearInterval(interal4);
                 firstTextTrans4 = 0;
-                rotateHexagon[3].classList.remove("rotate-hexagon")
+                // rotateHexagon[3].classList.remove("rotate-hexagon")
             }
             textTitleTrans4[firstTextTrans4].classList.add("transTextActive")
         }
@@ -523,7 +547,7 @@ function showSliderMove() {
     else {
         const textTitleTrans4 = document.querySelectorAll(".transText4");
         const rotateHexagon = document.querySelectorAll(".bi-hexagon");
-        rotateHexagon[3].classList.add("rotate-hexagon")
+        // rotateHexagon[3].classList.add("rotate-hexagon")
         textTitleTrans4.forEach((text4) => {
             text4.classList.remove("transTextActive");
         })
@@ -531,9 +555,14 @@ function showSliderMove() {
 
 }
 
+function autoSlide(){
+    var timerId = setInterval(showSliderMove, 5000);
+    
+}
 
 
-var slide =  1;
+
+var slide = 0;
 const arraySkewSlide =
     ["./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg",
         "./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg",
@@ -542,15 +571,7 @@ function renderSkew() {
     const containExploreModel = document.querySelector(".contain-explore-model");
     const exploreModel = document.createElement("div");
     exploreModel.classList.add("explore-model");
-    exploreModel.innerHTML = `<div class="slide-skew active-skew ">
-                        <div class="skew">
-                            <div class="skew_background">
-                                <img src="./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="slide-skew">
+    exploreModel.innerHTML = `<div class="slide-skew active-skew">
                         <div class="skew">
                             <div class="skew_background">
                                 <img src="./Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg" alt="">
@@ -566,14 +587,22 @@ function renderSkew() {
                         </div>
                     </div>
                     
+                    <div class="slide-skew">
+                        <div class="skew">
+                            <div class="skew_background">
+                                <img src="./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
     `
     containExploreModel.appendChild(exploreModel)
 }
 const arrayModelSkew =
     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
-    './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
-    './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+        './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
+        './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
 function slideSkewNext() {
     // const arrayModelSkew =
     //     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
@@ -582,47 +611,14 @@ function slideSkewNext() {
 
 
 
-    // const slideSkew = document.querySelectorAll(".slide-skew");
+    const slideSkew = document.querySelectorAll(".slide-skew");
     // const exploreModel = document.querySelector(".explore-model");
 
     slide++;
-    if (slide > arraySkewSlide.length - 1) {
+    if (slide > slideSkew.length - 1) {
         slide = 0
     }
-    // const skewDiv = document.createElement("div");
-    // skewDiv.classList.add("slide-skew");
-    // skewDiv.innerHTML = `<div class="skew">
-    //     <div class="skew_background">
-    //         <img src="${arrayModelSkew[slide]}" alt="">
-    //     </div>
-    // </div>`;
-    // console.log(exploreModel)
 
-    // exploreModel.appendChild(skewDiv);
-    // slideSkew[0].remove();
-    // const slideAct = document.querySelector(".slide-skew.active-skew")
-    // // slideAct.classList.remove("active-skew");
-    // // setTimeout(function(){
-    // slideSkew[1].classList.add("active-skew");
-    // // },500);
-
-    // const skewDiv2 = document.createElement("div");
-    // skewDiv2.classList.add("slide-skew");
-    // skewDiv2.innerHTML = `<div class="skew">
-    //     <div class="skew_background">
-    //         <img src="${arrayModelSkew[slide]}" alt="">
-    //     </div>
-    // </div>`;
-    // console.log(exploreModel)
-    // exploreModel.appendChild(skewDiv2);
-    // setTimeout(function () {
-    //     skewDiv2.classList.add("active-skew2");
-    // }, 100)
-    // setTimeout(function () {
-    //     const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
-    //     skewDivAct2.remove();
-    // }, 700)
-    // console.log(slideSkew);
     return skewNextBack(slide)
 
 }
@@ -631,51 +627,21 @@ function slideSkewBack() {
 
 
 
-    // const slideSkew = document.querySelectorAll(".slide-skew");
+    const slideSkew = document.querySelectorAll(".slide-skew");
     // const exploreModel = document.querySelector(".explore-model");
 
     slide--;
     if (slide < 0) {
         slide = slideSkew.length - 1
     }
-    // const skewDiv = document.createElement("div");
-    // skewDiv.classList.add("slide-skew");
-    // skewDiv.innerHTML = `<div class="skew">
-    //         <div class="skew_background">
-    //             <img src="${arrayModelSkew[slide]}" alt="">
-    //         </div>
-    //     </div>`;
-    // console.log(exploreModel)
+    console.log('0', slideSkew[0])
+    console.log('1', slideSkew[1])
+    console.log('2', slideSkew[2])
 
-    // exploreModel.appendChild(skewDiv);
-    // slideSkew[0].remove();
-    // const slideAct = document.querySelector(".slide-skew.active-skew")
-    // // slideAct.classList.remove("active-skew");
-    // // setTimeout(function(){
-    // slideSkew[1].classList.add("active-skew");
-    // // },500);
-
-    // const skewDiv2 = document.createElement("div");
-    // skewDiv2.classList.add("slide-skew");
-    // skewDiv2.innerHTML = `<div class="skew">
-    //         <div class="skew_background">
-    //             <img src="${arrayModelSkew[slide]}" alt="">
-    //         </div>
-    //     </div>`;
-    // console.log(exploreModel)
-    // exploreModel.appendChild(skewDiv2);
-    // setTimeout(function () {
-    //     skewDiv2.classList.add("active-skew2");
-    // }, 100)
-    // setTimeout(function () {
-    //     const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
-    //     skewDivAct2.remove();
-    // }, 700)
-    // console.log(slide);
     return skewNextBack(slide)
 
 }
-function skewNextBack(slide){
+function skewNextBack(slide) {
     return slide
 }
 
@@ -684,6 +650,7 @@ const controlLeft = document.querySelector(".control-slide-left");
 const controlRight = document.querySelector(".control-slide-right");
 controlRight.addEventListener("click", function () {
     slideSkewNext();
+
     console.log(slide);
     const slideSkew = document.querySelectorAll(".slide-skew");
     const exploreModel = document.querySelector(".explore-model");
@@ -694,7 +661,7 @@ controlRight.addEventListener("click", function () {
                 <img src="${arrayModelSkew[slide]}" alt="">
             </div>
         </div>`;
-    console.log(exploreModel)
+
 
     exploreModel.appendChild(skewDiv);
     slideSkew[0].remove();
@@ -711,7 +678,7 @@ controlRight.addEventListener("click", function () {
                 <img src="${arrayModelSkew[slide]}" alt="">
             </div>
         </div>`;
-    console.log(exploreModel)
+
     exploreModel.appendChild(skewDiv2);
     setTimeout(function () {
         skewDiv2.classList.add("active-skew2");
@@ -720,49 +687,207 @@ controlRight.addEventListener("click", function () {
         const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
         skewDivAct2.remove();
     }, 700)
-    
-    
+    const skewTextEffectBlock = document.querySelectorAll(".skewTextEffect");
+    skewTextEffectBlock.forEach((textOpaAll, index) => {
+        const activeSkewTextEff = document.querySelector(".skewTextEffect.activeSkewTextEffect");
+        if (slide > skewTextEffectBlock.length - 1) {
+            slide = 0;
+        }
+        activeSkewTextEff.classList.remove("activeSkewTextEffect");
+        skewTextEffectBlock[slide].classList.add("activeSkewTextEffect");
+
+    })
+    setTimeout(function () {
+        const bigText2s = document.querySelectorAll(".big-text2");
+        const activeBigText2 = document.querySelector(".big-text2.trans-x-0");
+        activeBigText2.classList.remove("trans-x-0");
+        bigText2s[slide].classList.add("trans-x-0");
+    }, 200);
+
+
+
+    if (skewTextEffectBlock[0].classList.contains("activeSkewTextEffect")) {
+
+        var increaseTextOpa1 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa1++;
+                const skewTextOpa1 = document.querySelectorAll(".skewTextOpa1");
+                if (increaseTextOpa1 > skewTextOpa1.length - 1) {
+                    clearInterval(textOpaSkew1);
+                    increaseTextOpa1 = 0
+
+                }
+
+                skewTextOpa1[increaseTextOpa1].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew1 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa1.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
+    }
+    // --------------
+    if (skewTextEffectBlock[1].classList.contains("activeSkewTextEffect")) {
+
+        var increaseTextOpa2 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa2++;
+                const skewTextOpa2 = document.querySelectorAll(".skewTextOpa2");
+                if (increaseTextOpa2 > skewTextOpa2.length - 1) {
+                    clearInterval(textOpaSkew2);
+                    increaseTextOpa2 = 0
+
+                }
+
+                skewTextOpa2[increaseTextOpa2].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew2 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa2.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
+    }
+    // --------------
+    if (skewTextEffectBlock[2].classList.contains("activeSkewTextEffect")) {
+
+        var increaseTextOpa3 = -1;
+        setTimeout(function () {
+            function textOpa() {
+                increaseTextOpa3++;
+                const skewTextOpa3 = document.querySelectorAll(".skewTextOpa3");
+                if (increaseTextOpa3 > skewTextOpa3.length - 1) {
+                    clearInterval(textOpaSkew3);
+                    increaseTextOpa3 = 0
+
+                }
+
+                skewTextOpa3[increaseTextOpa3].classList.add("activeOpaText");
+
+            }
+            var textOpaSkew3 = setInterval(textOpa, 100);
+        }, 700)
+    } else {
+        const activeOpa = document.querySelectorAll(".skewTextOpa3.activeOpaText");
+        activeOpa.forEach((act) => {
+            act.classList.remove("activeOpaText");
+        })
+
+    }
 })
-controlLeft.addEventListener("click", function () {
-    slideSkewBack(); 
-    const slideSkew = document.querySelectorAll(".slide-skew");
-    const exploreModel = document.querySelector(".explore-model");
-    const skewDiv = document.createElement("div");
-    skewDiv.classList.add("slide-skew");
-    skewDiv.innerHTML = `<div class="skew">
-            <div class="skew_background">
-                <img src="${arrayModelSkew[slide]}" alt="">
-            </div>
-        </div>`;
-    console.log(exploreModel)
 
-    exploreModel.appendChild(skewDiv);
-    slideSkew[0].remove();
-    const slideAct = document.querySelector(".slide-skew.active-skew")
-    // slideAct.classList.remove("active-skew");
-    // setTimeout(function(){
-    slideSkew[1].classList.add("active-skew");
-    // },500);
-
-    const skewDiv2 = document.createElement("div");
-    skewDiv2.classList.add("slide-skew");
-    skewDiv2.innerHTML = `<div class="skew">
-            <div class="skew_background">
-                <img src="${arrayModelSkew[slide]}" alt="">
-            </div>
-        </div>`;
-    console.log(exploreModel)
-    exploreModel.appendChild(skewDiv2);
-    setTimeout(function () {
-        skewDiv2.classList.add("active-skew2");
-    }, 100)
-    setTimeout(function () {
-        const skewDivAct2 = document.querySelector(".slide-skew.active-skew2")
-        skewDivAct2.remove();
-    }, 700)
+function appendInfoSkew() {
+    const infoSkew = [
+        ["HURACÁN STERRATO", "HURACÁN TECNICA", "HURACÁN STO", "HURACÁN EVO", "HURACÁN EVO SPYDER", "HURACÁN EVO RWD", "HURACÁN EVO RWD SPYDER"],
+        ["AVENTADOR SVJ", "AVENTADOR SVJ ROADSTER", "AVENTADOR LP 780-4 ULTIMAE ROADSTER", "AVENTADOR LP 780-4 ULTIMAE"],
+        ["URUS S", "URUS PERFORMANTE", "URUS", "URUS PEARL CAPSULE", "URUS GRAPHITE CAPSULE"],
+    ];
+    // for( var i = 0 ; i < infoSkew.length -1 ; i++){
+    //    for(var j = 0 ; j < infoSkew.length)
+    // }
+    skewNextBack(slide);
     console.log(slide);
-})
+    function renderLI() {
+        return
+    }
+    // console.log(infoSkew[2]);
+    const btnAddInfoSkew = document.querySelector(".hexagon2_banner2_plus");
+    btnAddInfoSkew.addEventListener("click", (event) => {
+        const controlSkew = document.querySelector(".control");
+        const skewTextEffect = document.querySelectorAll(".skewTextEffect");
+        const btn_add_moreSkew = document.querySelector(".btn_add_moreSkew");
+        setTimeout(function () {
+            skewTextEffect.forEach(function (skew) {
+                skew.classList.add("display-n");
+            })
+            btn_add_moreSkew.classList.add("display-n");
+            controlSkew.classList.add("display-n");
+        }, 300);
+        const containExplore = document.querySelector(".contain-explore-model");
+        const addDivInfo = document.createElement("div");
+        addDivInfo.classList.add("contain_info-model-skew");
+        addDivInfo.innerHTML = `<div class="info-model-skew" style="transform : skew(20deg)">
+        <div class="back_btn_skew">
+            <button class="control-slide-right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="70"
+                    width="70">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <path
+                        d="M220,175.3V80.7a8.1,8.1,0,0,0-4.1-7l-84-47.5a7.8,7.8,0,0,0-7.8,0l-84,47.5a8.1,8.1,0,0,0-4.1,7v94.6a8.1,8.1,0,0,0,4.1,7l84,47.5a7.8,7.8,0,0,0,7.8,0l84-47.5A8.1,8.1,0,0,0,220,175.3Z"
+                        fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="6" id="mainIconPathAttribute"></path>
+                </svg>
+                <div class="hexagon2_banner2_info">
+                    <i style="font-size: 20px;" class="bi bi-chevron-left btn-left-appendSlide1"></i>
+                </div>
+            </button>
+        </div>
+        <div class="contain_ul_skew">
+            
+        </div>
+       </div>`
+        containExplore.appendChild(addDivInfo);
+        const divSKewInfo = document.querySelector(".contain_ul_skew");
+        const ulSkewInfo = document.createElement("ul");
+        ulSkewInfo.classList.add("ul_info-model-skew");
+        var html = '';
+        for (var i = 0; i < infoSkew[slide].length; i++) {
 
+            html += `<li>
+            <div class="opa_text_info">
+                EXPLORE
+            </div>
+            <div class="info_model_skew">
+                ${infoSkew[slide][i]}
+            </div>      
+          </li>
+          `;
+
+        }
+        ulSkewInfo.innerHTML = html;
+        divSKewInfo.appendChild(ulSkewInfo);
+        setTimeout(function () {
+            const activeContainInfoSkew = document.querySelector(".contain_info-model-skew");
+            activeContainInfoSkew.classList.add("active_contain_info-model-skew");
+            const exploreModel = document.querySelector(".explore-model");
+            exploreModel.classList.add("active_explore-model");
+        }, 250);
+        removeSkewInfo();
+    })
+}
+
+function removeSkewInfo() {
+    const backBtnSkew = document.querySelector(".back_btn_skew");
+
+    backBtnSkew.addEventListener("click", function () {
+        const controlSkew = document.querySelector(".control");
+        const skewTextEffect = document.querySelectorAll(".skewTextEffect");
+        const btn_add_moreSkew = document.querySelector(".btn_add_moreSkew");
+
+        skewTextEffect.forEach(function (skew) {
+            skew.classList.remove("display-n");
+        })
+        btn_add_moreSkew.classList.remove("display-n");
+        controlSkew.classList.remove("display-n");
+        const activeContainInfoSkew = document.querySelector(".contain_info-model-skew.active_contain_info-model-skew");
+        activeContainInfoSkew.classList.remove("active_contain_info-model-skew");
+        const exploreModel = document.querySelector(".explore-model.active_explore-model");
+        exploreModel.classList.remove("active_explore-model");
+        const containInfoSkew = document.querySelector(".contain_info-model-skew");
+        setTimeout(function () {
+            containInfoSkew.remove();
+        }, 285)
+    })
+}
 
 
 
@@ -781,9 +906,9 @@ function beginLambor() {
     showModel();
     addEffect();
     showSliderMove();
-    setInterval(showSliderMove, 15000);
+    autoSlide() 
     renderSkew();
-
+    appendInfoSkew();
 
 }
 beginLambor()

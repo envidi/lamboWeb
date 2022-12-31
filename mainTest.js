@@ -212,7 +212,7 @@ function showModel() {
 
         ]
     const aventador = document.querySelectorAll(".aventador");
-    console.log(aventador)
+
     aventador.forEach(function (aven, indexaven) {
         aven.addEventListener("mouseover", function () {
             const appendMenuLink = document.createElement("div");
@@ -397,7 +397,46 @@ function addEffect() {
 
 // ----------------main--------------------------------------
 var increase = 0;
-function showSliderMove() {
+function showIncrease() {
+
+    increase++;
+    const bannerImg = document.querySelectorAll(".banner__img");
+
+
+    if (increase > bannerImg.length - 1) {
+        increase = 0;
+    }
+
+
+    return showSliderMove()
+
+
+
+}
+
+function choseIncrease() {
+    const controlBlocks = document.querySelectorAll(".control-block");
+
+    controlBlocks.forEach((controlBlock, index) => {
+        controlBlock.addEventListener("click", function () {
+
+            return showSliderMove(index)
+        })
+    })
+}
+
+
+
+
+function showSliderMove(index) {
+    if (index || index === 0) {
+        increase = index
+
+    }
+
+    console.log(increase);
+    const controlBlocks = document.querySelectorAll(".control-block");
+    const activeControlBlocks = document.querySelector(".control-block.active_block");
     const bannerImg = document.querySelectorAll(".banner__img");
     const bannerContentTitle = document.querySelectorAll(".banner__title");
     const bigText = document.querySelectorAll(".big-text");
@@ -407,25 +446,18 @@ function showSliderMove() {
     const bannerContentTitleActive = document.querySelector(".banner__title.active-banner");
     const hexagonBannerActive = document.querySelector(".hexagon__banner.sca-hexa-100");
 
+    activeControlBlocks.classList.remove("active_block")
+    controlBlocks[increase].classList.add("active_block");
 
-    function increaseBanner() {
-        increase++;
-        if (increase > bannerImg.length - 1) {
-            increase = 0;
-        }
-
-
-    }
-
-
-    setInterval(increaseBanner(), 1000);
     bannerImgActive.classList.remove("active");
     bannerImg[increase].classList.add("active");
+
     bigTextActive.classList.remove("trans-x-0")
     bigText[increase].classList.add("trans-x-0");
-    // bannerContentTitle[increase].innerHTML = bannerTitleArray[increase]
+
     bannerContentTitleActive.classList.remove("active-banner")
     bannerContentTitle[increase].classList.add("active-banner");
+
     hexagonBannerActive.classList.remove("sca-hexa-100");
     hexagonBanner[increase].classList.add("sca-hexa-100");
     if (bannerContentTitle[1].classList.contains("active-banner")) {
@@ -531,6 +563,8 @@ function showSliderMove() {
     }
 
 }
+
+
 
 
 
@@ -767,7 +801,7 @@ function appendInfoSkew() {
     //    for(var j = 0 ; j < infoSkew.length)
     // }
     skewNextBack(slide);
-    console.log(slide);
+
     function renderLI() {
         return
     }
@@ -783,7 +817,7 @@ function appendInfoSkew() {
             })
             btn_add_moreSkew.classList.add("display-n");
             controlSkew.classList.add("display-n");
-        }, 300  );
+        }, 300);
         const containExplore = document.querySelector(".contain-explore-model");
         const addDivInfo = document.createElement("div");
         addDivInfo.classList.add("contain_info-model-skew");
@@ -844,7 +878,7 @@ function removeSkewInfo() {
         const controlSkew = document.querySelector(".control");
         const skewTextEffect = document.querySelectorAll(".skewTextEffect");
         const btn_add_moreSkew = document.querySelector(".btn_add_moreSkew");
-       
+
         skewTextEffect.forEach(function (skew) {
             skew.classList.remove("display-n");
         })
@@ -878,7 +912,9 @@ function beginLambor() {
     showModel();
     addEffect();
     showSliderMove();
-    setInterval(showSliderMove, 15000);
+    choseIncrease()
+    setInterval(showIncrease(),5000)
+    
     renderSkew();
     appendInfoSkew();
 
