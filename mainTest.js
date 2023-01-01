@@ -12,6 +12,7 @@ function menuBar() {
 function seperateUl() {
     const models = document.querySelectorAll(".ul-menu-left__model");
 
+
     var element = document.querySelectorAll(".spanMain");
 
     for (let i = 0; i < element.length; i++) {
@@ -610,10 +611,7 @@ const arrayModelSkew =
         './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
         './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
 function slideSkewNext() {
-    // const arrayModelSkew =
-    //     ['./Lamborghini-Img/model-explore/urus_s_family_chooser.jpg',
-    //         './Lamborghini-Img/model-explore/ultimae_coupe_Compositing_4terzi.jpg',
-    //         './Lamborghini-Img/model-explore/family_chooser_tecnica.jpg',]
+
 
 
 
@@ -634,7 +632,7 @@ function slideSkewBack() {
 
 
     const slideSkew = document.querySelectorAll(".slide-skew");
-    // const exploreModel = document.querySelector(".explore-model");
+
 
     slide--;
     if (slide < 0) {
@@ -672,10 +670,9 @@ controlRight.addEventListener("click", function () {
     exploreModel.appendChild(skewDiv);
     slideSkew[0].remove();
     const slideAct = document.querySelector(".slide-skew.active-skew")
-    // slideAct.classList.remove("active-skew");
-    // setTimeout(function(){
+
     slideSkew[1].classList.add("active-skew");
-    // },500);
+
 
     const skewDiv2 = document.createElement("div");
     skewDiv2.classList.add("slide-skew");
@@ -899,6 +896,167 @@ function removeSkewInfo() {
 
 
 
+function bgModelChooser() {
+    const arrModelChoosers = [
+        "./Lamborghini-Img/model-chooser/huracan_sterrato_home.jpg",
+        "./Lamborghini-Img/model-chooser/urus_s_home.jpg"
+    ]
+
+
+    const changeModelChooses = document.querySelectorAll(".change_model_chooser_child");
+
+    // changeModelChooses.forEach(function(changeModelChoose,index){
+    //     changeModelChoose.addEventListener("mouseover",function(){
+    //         changeModelChooses[index].style.setProperty('--widthModel1', '100%')
+    //     })
+    // })
+    // changeModelChooses.forEach(function(changeModelChoose,index){
+    //     changeModelChoose.addEventListener("mouseout",function(){
+    //         changeModelChooses[index].style.setProperty('--widthModel1', '0%')
+    //     })
+    // })
+
+    changeModelChooses.forEach((changeModelChoose, index) => {
+        changeModelChoose.addEventListener("click", () => {
+            return renderModelChooser(index);
+        })
+    })
+
+  
+
+}
+var something = (function() {
+    var executed = false;
+    return function() {
+        if (!executed) {
+            executed = true;
+            
+            const changeModelChild = document.querySelectorAll(".change_model_chooser_child");
+            changeModelChild[0].style.setProperty('--widthModel1', '100%');
+        }
+    };
+})();
+
+function renderModelChooser(index) {
+
+
+    const imgModelChooser = document.querySelectorAll(".model_chooser_img");
+
+    const activeImgModelChooser = document.querySelector(".model_chooser_img.active_model_chooser");
+    const firstCreate = document.querySelectorAll(".first_create_huracan");
+    const activeFirstCreate = document.querySelector(".first_create_huracan.active_first_create_huracan");
+
+    const secondCreate = document.querySelectorAll(".second_create_huracan");
+    const activeSecondCreate = document.querySelector(".second_create_huracan.active_second_create_huracan");
+
+    const infoModelChooser = document.querySelectorAll(".model_chooser_info");
+    const activeInfoModelChooser = document.querySelector(".model_chooser_info.active_model_chooser_info");
+
+    const btnModelChooser = document.querySelectorAll(".btn-model-chooser");
+    const activeBtnModelChooser = document.querySelector(".btn-model-chooser.active_btn-model-chooser");
+
+    const changeModelChild = document.querySelectorAll(".change_model_chooser_child");
+    const activeChangeModelChild = document.querySelector(".change_model_chooser_child.active_change_model");
+    
+
+   
+
+   
+    
+
+    activeChangeModelChild.classList.remove("active_change_model");
+    changeModelChild[index].classList.add("active_change_model");
+
+    activeChangeModelChild.style.setProperty('--widthModel1', '0%');
+    changeModelChild[index].style.setProperty('--widthModel1', '100%');
+
+    activeImgModelChooser.classList.remove("active_model_chooser");
+    imgModelChooser[index].classList.add("active_model_chooser");
+
+
+    activeInfoModelChooser.classList.remove("active_model_chooser_info");
+    infoModelChooser[index].classList.add("active_model_chooser_info");
+
+    setTimeout(function () {
+        activeBtnModelChooser.classList.remove("active_btn-model-chooser");
+        btnModelChooser[index].classList.add("active_btn-model-chooser");
+
+        activeFirstCreate.classList.remove("active_first_create_huracan");
+        firstCreate[index].classList.add("active_first_create_huracan");
+
+        activeSecondCreate.classList.remove("active_second_create_huracan");
+        secondCreate[index].classList.add("active_second_create_huracan");
+
+
+    }, 100)
+
+
+    setTimeout(function () {
+
+
+        if (imgModelChooser[0].classList.contains("active_model_chooser")) {
+            var firstTextTrans3 = -1;
+
+            function transText() {
+                firstTextTrans3++;
+
+                const textTitleTrans3 = document.querySelectorAll(`.text_chooser_config0`);
+                if (firstTextTrans3 > textTitleTrans3.length - 1) {
+                    clearInterval(interal3);
+                    firstTextTrans3 = 0;
+
+                }
+                textTitleTrans3[firstTextTrans3].classList.add("active_text_chooser_config")
+            }
+            var interal3 = setInterval(transText, 100)
+        }
+        else {
+            const textTitleTrans3 = document.querySelectorAll(`.text_chooser_config0`);
+
+
+            textTitleTrans3.forEach((text3) => {
+                text3.classList.remove("active_text_chooser_config");
+            })
+        }
+
+
+
+        if (imgModelChooser[1].classList.contains("active_model_chooser")) {
+            var firstTextTrans4 = -1;
+
+            function transText4() {
+                firstTextTrans4++;
+
+                const textTitleTrans4 = document.querySelectorAll(".text_chooser_config1");
+                if (firstTextTrans4 > textTitleTrans4.length - 1) {
+                    clearInterval(interal4);
+                    firstTextTrans4 = 0;
+
+                }
+                textTitleTrans4[firstTextTrans4].classList.add("active_text_chooser_config")
+            }
+            var interal4 = setInterval(transText4, 100)
+        }
+        else {
+            const textTitleTrans4 = document.querySelectorAll(".text_chooser_config1");
+
+
+            textTitleTrans4.forEach((text3) => {
+                text3.classList.remove("active_text_chooser_config");
+            })
+        }
+
+    }, 1)
+
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -913,10 +1071,11 @@ function beginLambor() {
     addEffect();
     showSliderMove();
     choseIncrease()
-    setInterval(showIncrease(),5000)
-    
+    setInterval(showIncrease(), 5000)
+    something()
     renderSkew();
     appendInfoSkew();
+    bgModelChooser()
 
 }
 beginLambor()
