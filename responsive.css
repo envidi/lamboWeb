@@ -1,0 +1,86 @@
+
+
+@media only screen and (min-width : 1281px) {
+    .container{
+        width: 1280px;
+        display: flex;
+        
+        
+    }
+    .control-banner{
+        top: 550px;
+    }
+    .btn_add_moreSkew{
+        top: 440px;
+    }
+
+
+    .contain-explore-model{
+        height: 599px;
+    }
+    .change_model_chooser{
+        top: 380px;
+    }
+}
+
+@media only screen and (max-width : 1279px) and (min-width : 1024px){
+
+  
+
+    .big-text{
+        font-size: 59px;
+    }
+    .skewTextOpa2{
+        font-size: 80px;
+    }
+    .skewTextOpa1{
+        font-size: 80px;
+    }
+    .skewTextOpa3{
+        font-size: 80px;
+    }
+    .skewTextOpa4{
+        font-size: 80px;
+    }
+    .create-model{
+        font-size: 60px;
+    }
+    .create_huracan{
+        line-height: 60px;
+    }
+
+    @media only screen and (max-width : 1100px) and (min-width : 1024px){
+        .control-banner{
+            top: 45vw;
+        }
+        .skewTextOpa2{
+            font-size: 60px;
+        }
+        .skewTextOpa1{
+            font-size: 60px;
+        }
+        .skewTextOpa3{
+            font-size: 60px;
+        }
+        .skewTextOpa4{
+            font-size: 60px;
+        }
+        .skewTextEffect{
+            margin-top: 25%;
+        }
+        .big-text2{
+            font-size: 25px;
+        }
+        .big-text{
+            font-size: 50px;
+        }
+
+        .create-model{
+            font-size: 50px;
+        }
+        .create_huracan{
+            line-height: 50px;
+        }
+    }
+    
+}

@@ -226,7 +226,7 @@ function showModel() {
                         <img src=${aventadorArray[indexaven].image} alt="" srcset="">
                     </div>
                 </div>
-                <!-- ---img --- -->
+             
                 <div class="content">
                     <div class="col-content">
                         <div class="left d-f jf-c al-c">
@@ -298,7 +298,7 @@ function showModel() {
             menuLevel2.appendChild(appendMenuLink);
             appendMenuLink.classList.add("active");
 
-            responsiveImg();
+            
         })
         aven.addEventListener("mouseout", menuRemove)
     })
@@ -345,7 +345,10 @@ function addEffect() {
         aven.addEventListener("mouseover", function () {
             setTimeout(function () {
                 const lambo = document.querySelector(".lambo");
-                lambo.classList.add("active");
+             
+                if(lambo){
+                    lambo.classList.add("active");
+                }
                 const hexas = document.querySelectorAll(".hexagon");
                 const hexa2s = document.querySelectorAll(".hexagon2");
                 const left = document.querySelectorAll(".left");
