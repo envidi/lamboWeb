@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color:  #181818;
+  /* background-color:  #181818; */
   display: flex;
   justify-content: center;
 }
@@ -49,6 +49,14 @@ body {
 .w-50 {
   width: 50%;
 }
+.w-65{
+  width: 65%;
+
+}
+.w-35{
+  width: 35%;
+  
+}
 
 .h-at {
   height: auto;
@@ -80,6 +88,9 @@ body {
 
 .al-c-t {
   align-content: flex-start;
+}
+.al-t{
+  align-items: flex-start;
 }
 
 .t-a-l {
@@ -1691,7 +1702,7 @@ main {
 
 .control-banner {
   position: absolute;
-  top: 24%;
+  top: 14%;
   left: 11%;
   display: flex;
   gap: 10px;
@@ -2105,4 +2116,118 @@ main {
 }
 .dealer_locator_hover:hover{
   background-color: rgb(255, 255, 255);
+}
+/* ------------------- NEWS ---------------------------- */
+.section-news{
+  padding: 0px 8%;
+  background-color: white;
+  margin-top: -4px;
+}
+.title-news{
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 90px;
+  color: black;
+}
+.lambo-world{
+  font-size: 90px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+
+}
+.img-title{
+  margin-top: 25px;
+}
+.img-title img{
+  width: 100%;
+}
+.date-title{
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 2px;
+  margin-top: 45px;
+}
+.tag{
+  background-color: #F8F8F7;
+  color: #202020;
+  padding: 5px 10px;
+  padding-top: 4px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.block-hover:hover{
+  background-color: #181818;
+  color: white;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.tags{
+  gap: 10px;
+  margin-top: 10px;
+}
+.conatin-row-news{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.sant{
+  font-size: 16px;
+  color: #5b5b5b;
+  margin-top: 10px;
+  font-weight: 400;
+}
+.automobili{
+  font-size: 34px;
+  font-weight: 600;
+}
+.read-more-news{
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.read-more{
+  padding: 14px 55px;
+  background-color: transparent;
+  border: 1px solid #cbcbca;
+  transition: 0.3s ease-in-out;
+}
+.contain-blog{
+  margin-bottom: 50px;
+}
+.img-blog{
+  width: 48.5%;
+
+}
+
+.img-blog img{
+  width: 100%;
+}
+.content-blog{
+  width: 48.5%;
+}
+.date-blog{
+  color: #202020;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+.title-blog{
+  font-size: 30px;
+  font-weight: 600;
+  flex: 1;
+}
+.blog{
+  margin: 55px 0px;
+}
+.see-all{
+  padding: 14px 55px;
+  background-color: #181818;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+.see-all:hover{
+  background-color: white;
+  border: 1px solid #cbcbca;
+  transition: 0.3s ease-in-out;
+  color: black;
+
 }
